@@ -1,12 +1,12 @@
 # AVL_Tree
 
 ## Quick reference
-- [Constructor]()
-- [Insertion]()
-- [Deletion]()
-- [Search]()
-- [Operator overloading]()
-- [Getter function]()
+- [Constructor](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#constructor)
+- [Insertion](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#insertion)
+- [Deletion](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#deletion)
+- [Searching](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#searching)
+- [Operator overloading](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#operator-overloading)
+- [Getter function](https://github.com/MagicNotmac0820/AVL_Tree?tab=readme-ov-file#getter-function)
 
 ## Introduction
 `AVL_Tree` is a generic, self-balancing binary search tree implementation in C++.  
