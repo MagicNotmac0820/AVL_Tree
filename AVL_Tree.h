@@ -69,6 +69,7 @@ class AVL_Tree{
     public :
         AVL_Tree( const Compare &comp = Compare() ) :
             root(nullptr) , _comp(comp) , _size(){}
+            
         AVL_Tree( const AVL_Tree &other_tree ) :
             root( (!other_tree.root) ? nullptr : new TreeNode<T>(*other_tree.root) ) ,
             _comp(other_tree._comp) ,
@@ -266,6 +267,7 @@ bool AVL_Tree<T,Compare>::remove_recursive( TreeNode<T> *&root , const T &target
         // Condition: only exists the left subtree of target node
             TreeNode<T> *tmp = root ;
             root = root->left ;
+            // Detach children to prevent them from being deleted along with this node
             tmp->left = tmp->right = nullptr ;
             delete tmp ;
             return true ;
@@ -273,6 +275,7 @@ bool AVL_Tree<T,Compare>::remove_recursive( TreeNode<T> *&root , const T &target
         // Condition: only exists the right subtree of target node
             TreeNode<T> *tmp = root ;
             root = root->right ;
+            // Detach children to prevent them from being deleted along with this node
             tmp->left = tmp->right = nullptr ;
             delete tmp ;
             return true ;
@@ -280,15 +283,11 @@ bool AVL_Tree<T,Compare>::remove_recursive( TreeNode<T> *&root , const T &target
 
         // Condition: both the left subtree and the right subtree of target node exist
         TreeNode<T> **indirect_candidate_node = &root->right ;
-        while((*indirect_candidate_node)->left){
-            --(*indirect_candidate_node)->height ;
+        while((*indirect_candidate_node)->left)
             indirect_candidate_node = &(*indirect_candidate_node)->left ;
-        }
         std::swap( root->data , (*indirect_candidate_node)->data ) ;
 
-        TreeNode<T> *deleted_node = *indirect_candidate_node ;
-        *indirect_candidate_node = (*indirect_candidate_node)->right ;
-        delete deleted_node ;
+        remove_recursive( root->right , root->data ) ;
     }
 
     root->update_height() ;
